@@ -8,7 +8,7 @@ function SearchForm(props) {
             <form onSubmit={e => e.preventDefault()}>
                 <input type="text" placeholder="character name" value={props.searchValue} onChange={props.searchHandler} />
                 <select onChange={props.dropDownHandler}>
-                    <option selected disabled value=''>-- select show --</option>
+                    <option selected value=''>-- select show --</option>
                     {props.shows.map(show => <option value={show}>{show}</option>)}
                 </select>
             </form>
