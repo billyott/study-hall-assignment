@@ -2,6 +2,8 @@ import React from "react"
 import characters from "../api"
 
 import CharacterCard from '../Components/CharacterCard'
+import AddForm from '../Components/AddForm'
+import SearchForm from '../Components/SearchForm'
 
 class CharactersContainer extends React.Component {
 
@@ -16,8 +18,11 @@ class CharactersContainer extends React.Component {
     render() {
         return (
             <div>
-                <h1>Characters</h1>
-                {this.renderCharacters()}
+                <AddForm />
+                <SearchForm />
+                <div className="char-card-container">
+                    {this.renderCharacters()}
+                </div>
             </div>
         )
     }

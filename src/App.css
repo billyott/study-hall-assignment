@@ -37,10 +37,22 @@
   }
 }
 
-.char-card {
+.char-card-container {
+  display: flex;
 
+  flex-wrap: wrap;
+}
+
+.char-card {
+  flex-direction: wrap;
+  text-align: center;
+  border: dashed;
+  border-color: darkolivegreen;
+  background-color: rgb(252, 245, 233);
+  width: 300px;
+  object-fit: cover;
 }
 
 .char-img {
-  
+  width: 80%;
 }
