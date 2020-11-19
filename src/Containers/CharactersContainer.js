@@ -9,7 +9,8 @@ class CharactersContainer extends React.Component {
 
     state = {
         characters: characters,
-        searchValue: ''
+        searchValue: '',
+        dropDownValue: ''
     }
 
     submitHandler = (charObj) => {
@@ -21,19 +22,35 @@ class CharactersContainer extends React.Component {
         this.setState({searchValue: e.target.value})
     }
 
+    dropDownHandler = (e) => {
+        this.setState({dropDownValue: e.target.value})
+    }
+
     filteredCharacters = () => {
         return this.state.characters.filter(char => char.name.toLocaleLowerCase().includes(this.state.searchValue.toLocaleLowerCase()))
     }
 
+    dropDownFilteredCharacters = () => {
+        return this.filteredCharacters().filter(char => char.show === this.state.dropDownValue)
+    }
+
     renderCharacters = () => {
-        return this.filteredCharacters().map(charObj => <CharacterCard key={charObj.name} character={charObj}/>)
+        if (this.state.dropDownValue === '') {
+            return this.filteredCharacters().map(charObj => <CharacterCard key={charObj.name} character={charObj}/>)
+        } else {
+            return this.dropDownFilteredCharacters().map(charObj => <CharacterCard key={charObj.name} character={charObj}/>)
+        }
+    }
+
+    showList = () => {
+        return this.state.characters.map(char => char.show)
     }
 
     render() {
         return (
             <div>
                 <AddForm submitHandler={this.submitHandler}/>
-                <SearchForm searchValue={this.state.searchValue} searchHandler={this.searchHandler}/>
+                <SearchForm dropDownHandler={this.dropDownHandler} shows={this.showList()} searchValue={this.state.searchValue} searchHandler={this.searchHandler}/>
                 <div className="char-card-container">
                     {this.renderCharacters()}
                 </div>
