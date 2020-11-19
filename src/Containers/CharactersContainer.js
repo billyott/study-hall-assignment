@@ -11,6 +11,11 @@ class CharactersContainer extends React.Component {
         characters: characters 
     }
 
+    submitHandler = (charObj) => {
+        let newChars = [...this.state.characters, charObj]
+        this.setState({characters: newChars})
+    }
+
     renderCharacters = () => {
         return this.state.characters.map(charObj => <CharacterCard key={charObj.name} character={charObj}/>)
     }
@@ -18,7 +23,7 @@ class CharactersContainer extends React.Component {
     render() {
         return (
             <div>
-                <AddForm />
+                <AddForm submitHandler={this.submitHandler}/>
                 <SearchForm />
                 <div className="char-card-container">
                     {this.renderCharacters()}
